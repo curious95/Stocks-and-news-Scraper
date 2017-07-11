@@ -4,11 +4,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- * Created by kamal on 10/7/17.
+ * Created by aptus on 11/7/17.
  */
-public class Scrap {
-    public static void main(String[] args) {
+public class Newscraper {
 
+
+    void fetchNews(){
         try {
 
             Document doc = Jsoup.connect("https://news.google.com/news/headlines/section/topic/NATION.en_in/India?ned=in&hl=en-IN").userAgent("Mozilla").data("name", "jsoup").get();
@@ -25,4 +26,5 @@ public class Scrap {
             e.printStackTrace();
         }
     }
+
 }

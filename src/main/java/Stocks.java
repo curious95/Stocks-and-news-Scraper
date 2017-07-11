@@ -4,24 +4,21 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- * Created by kamal on 10/7/17.
+ * Created by aptus on 11/7/17.
  */
-public class Scrap {
+public class Stocks {
     public static void main(String[] args) {
-
         try {
+            Document doc = Jsoup.connect("http://money.rediff.com/index.html").userAgent("Mozilla").data("name", "jsoup").get();
 
-            Document doc = Jsoup.connect("https://news.google.com/news/headlines/section/topic/NATION.en_in/India?ned=in&hl=en-IN").userAgent("Mozilla").data("name", "jsoup").get();
-
-            Elements links = doc.getElementsByClass("nuEeue hzdq5d ME7ew");
+            Elements links = doc.select("#bseindex");
 
             for (Element link : links) {
                 // get the value from the href attribute
-                System.out.println("\nlink: " + link.attr("href"));
                 System.out.println("text: " + link.text());
             }
 
-        } catch (Exception e) {
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
