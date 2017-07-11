@@ -14,7 +14,7 @@ public class Scrap {
         StocksBSE se = new StocksBSE();
         StocksNSE ne = new StocksNSE();
 
-        HashMap<String,String> gainersBSE = se.getGainers();
+        HashMap<String,String> gainersBSE = se.getLosers();
 
         gainersBSE.entrySet().forEach(entry -> {
             System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue());
