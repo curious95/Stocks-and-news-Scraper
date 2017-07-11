@@ -6,35 +6,30 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
- * Created by Kamal on 11/7/17.
+ * Created by aptus on 11/7/17.
  */
 
-public class StocksBSE {
+public class StocksNSE {
 
     static  Document doc = null;
-    final String TOP_GAINERS_NAME = "#bseGainerDiv .row_GL .row_GL_col1 h4";
-    final String TOP_GAINERS_RATIO = "#bseGainerDiv .row_GL .row_GL_col3";
-    final String TOP_LOSERS_NAME = "#bseLoserDiv .row_GL .row_GL_col1 h4";
-    final String TOP_LOSERS_RATIO = "#bseLoserDiv .row_GL .row_GL_col3";
-    final String BSE_INDEX = "#bseindex";
-    final String CHANGE_PERCENT = "span .green";
+    final String TOP_GAINERS_NAME = "#nseGainerDiv .row_GL .row_GL_col1 h4";
+    final String TOP_GAINERS_RATIO = "#nseGainerDiv .row_GL .row_GL_col3";
+    final String TOP_LOSERS_NAME = "#nseLoserDiv .row_GL .row_GL_col1 h4";
+    final String TOP_LOSERS_RATIO = "#nseLoserDiv .row_GL .row_GL_col3";
+    final String NSE_INDEX = "#nseindex";
 
-
-
-    StocksBSE(){
-        try {
-            doc = Jsoup.connect("http://money.rediff.com/index.html").userAgent("Mozilla").data("name", "jsoup").get();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    StocksNSE(){
+       try {
+           doc = Jsoup.connect("http://money.rediff.com/index.html").userAgent("Mozilla").data("name", "jsoup").get();
+       }catch (Exception e){
+           e.printStackTrace();
+       }
     }
 
-
     // Top Five Gainers
-    HashMap<String, String> getGainers(){
+    HashMap<String,String> getGainers(){
         int i = 0;
 
         ArrayList<String> orgName = new ArrayList<String>();
@@ -45,12 +40,16 @@ public class StocksBSE {
         Elements orgs = doc.select(TOP_GAINERS_NAME);
 
         for (Element org : orgs) {
+            // get the value from the href attribute
+            //System.out.println("text: " + link.text());
             orgName.add(org.text());
         }
 
         Elements changes = doc.select(TOP_GAINERS_RATIO);
 
         for (Element change : changes) {
+            // get the value from the href attribute
+            //System.out.println("text: " + link.text());
             orgPercent.add(change.text());
         }
 
@@ -58,12 +57,12 @@ public class StocksBSE {
             topGainers.put(org,orgPercent.get(i));
             i++;
         }
-
     return topGainers;
+
     }
 
     // Top Five Losers
-    HashMap<String, String> getLosers(){
+    HashMap<String,String> getLosers(){
         int i = 0;
 
         ArrayList<String> orgName = new ArrayList<String>();
@@ -74,12 +73,16 @@ public class StocksBSE {
         Elements orgs = doc.select(TOP_LOSERS_NAME);
 
         for (Element org : orgs) {
+            // get the value from the href attribute
+            //System.out.println("text: " + link.text());
             orgName.add(org.text());
         }
 
         Elements changes = doc.select(TOP_LOSERS_RATIO);
 
         for (Element change : changes) {
+            // get the value from the href attribute
+            //System.out.println("text: " + link.text());
             orgPercent.add(change.text());
         }
 
@@ -88,11 +91,11 @@ public class StocksBSE {
             i++;
         }
 
-    return topLosers;
+        return topLosers;
     }
 
     String getIndex(){
-        Elements index = doc.select(BSE_INDEX);
+        Elements index = doc.select(NSE_INDEX);
 
         return(index.get(0).text());
     }

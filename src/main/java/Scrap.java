@@ -3,26 +3,21 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.HashMap;
+
 /**
  * Created by kamal on 10/7/17.
  */
 public class Scrap {
     public static void main(String[] args) {
 
-        try {
+        StocksBSE se = new StocksBSE();
+        StocksNSE ne = new StocksNSE();
 
-            Document doc = Jsoup.connect("https://news.google.com/news/headlines/section/topic/NATION.en_in/India?ned=in&hl=en-IN").userAgent("Mozilla").data("name", "jsoup").get();
+        HashMap<String,String> gainersBSE = se.getGainers();
 
-            Elements links = doc.getElementsByClass("nuEeue hzdq5d ME7ew");
-
-            for (Element link : links) {
-                // get the value from the href attribute
-                System.out.println("\nlink: " + link.attr("href"));
-                System.out.println("text: " + link.text());
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        gainersBSE.entrySet().forEach(entry -> {
+            System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue());
+        });
     }
 }

@@ -4,7 +4,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- * Created by aptus on 11/7/17.
+ * Created by Kamal on 11/7/17.
  */
 public class Newscraper {
 
