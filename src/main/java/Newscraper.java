@@ -8,23 +8,46 @@ import org.jsoup.select.Elements;
  */
 public class Newscraper {
 
+    final String ECONOMY_ENDPOINT = "https://news.google.com/news/headlines/section/q/economy/economy?ned=in&hl=en-IN";
+    final String COUNTYR_ENDPOINT = "https://news.google.com/news/headlines/section/topic/NATION.en_in/India?ned=in&hl=en-IN";
+    final String BUSINESS_ENDPOINT = "https://news.google.com/news/headlines/section/topic/BUSINESS.en_in/Business?ned=in&hl=en-IN";
 
-    void fetchNews(){
-        try {
+    final String CLASS_ID = "nuEeue hzdq5d ME7ew";
 
-            Document doc = Jsoup.connect("https://news.google.com/news/headlines/section/topic/NATION.en_in/India?ned=in&hl=en-IN").userAgent("Mozilla").data("name", "jsoup").get();
+    Document doc = null;
+    Elements links = null;
 
-            Elements links = doc.getElementsByClass("nuEeue hzdq5d ME7ew");
 
-            for (Element link : links) {
-                // get the value from the href attribute
-                System.out.println("\nlink: " + link.attr("href"));
-                System.out.println("text: " + link.text());
-            }
-
-        } catch (Exception e) {
+    void fetchEconomy(){
+        try{
+        doc = Jsoup.connect(ECONOMY_ENDPOINT).userAgent("Mozilla").data("name", "jsoup").get();
+            links = doc.getElementsByClass(CLASS_ID);
+            links.forEach(item-> System.out.println(item.text()));
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
+
+    void fetchCountry(){
+        try{
+            doc = Jsoup.connect(COUNTYR_ENDPOINT).userAgent("Mozilla").data("name", "jsoup").get();
+            links = doc.getElementsByClass(CLASS_ID);
+
+            links.forEach(item-> System.out.println(item.text()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    void fetchBusiness(){
+        try{
+            doc = Jsoup.connect(BUSINESS_ENDPOINT).userAgent("Mozilla").data("name", "jsoup").get();
+            links = doc.getElementsByClass(CLASS_ID);
+            links.forEach(item-> System.out.println(item.text()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
 }
