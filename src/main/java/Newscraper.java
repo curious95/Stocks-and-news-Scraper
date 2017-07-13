@@ -26,7 +26,7 @@ public class Newscraper {
         try{
         doc = Jsoup.connect(ECONOMY_ENDPOINT).userAgent("Mozilla").data("name", "jsoup").get();
             links = doc.getElementsByClass(CLASS_ID);
-            links.forEach(item-> economyNews.put(item.text(),""));
+            links.forEach(item-> economyNews.put(item.text(),item.attr("href")));
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -40,7 +40,7 @@ public class Newscraper {
             doc = Jsoup.connect(COUNTYR_ENDPOINT).userAgent("Mozilla").data("name", "jsoup").get();
             links = doc.getElementsByClass(CLASS_ID);
 
-            links.forEach(item-> countryNews.put(item.text(),""));
+            links.forEach(item-> countryNews.put(item.text(),item.attr("href")));
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -53,7 +53,7 @@ public class Newscraper {
         try{
             doc = Jsoup.connect(BUSINESS_ENDPOINT).userAgent("Mozilla").data("name", "jsoup").get();
             links = doc.getElementsByClass(CLASS_ID);
-            links.forEach(item-> businessNews.put(item.text(),""));
+            links.forEach(item-> businessNews.put(item.text(),item.attr("href")));
         }catch (Exception e){
             e.printStackTrace();
         }
