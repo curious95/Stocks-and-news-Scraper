@@ -6,7 +6,7 @@ import org.jsoup.select.Elements;
 import java.util.HashMap;
 
 /**
- * Created by kamal on 10/7/17.
+ * Created by Curious95 on 10/7/17.
  */
 public class Scrap {
     public static void main(String[] args) {

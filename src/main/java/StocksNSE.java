@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by aptus on 11/7/17.
+ * Created by Curious95 on 11/7/17.
  */
 
 public class StocksNSE {
