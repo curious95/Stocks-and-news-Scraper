@@ -11,17 +11,33 @@ import java.util.HashMap;
 public class Scrap {
     public static void main(String[] args) {
 
-        /*StocksBSE se = new StocksBSE();
+        StocksBSE se = new StocksBSE();
         StocksNSE ne = new StocksNSE();
+        Newscraper nes = new Newscraper();
+        Hasher hash = new Hasher();
 
-        HashMap<String,String> gainersBSE = se.getLosers();
+        HashMap<String, String> seGainers = se.getGainers();
+        HashMap<String, String> seLosers = se.getLosers();
+        HashMap<String, String> neGainers = se.getGainers();
+        HashMap<String, String> neLosers = se.getLosers();
 
-        gainersBSE.entrySet().forEach(entry -> {
-            System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue());
-        });*/
+        String seIndex = se.getIndex();
+        String neIndex = ne.getIndex();
+
+        HashMap<String, String> neEconomy = nes.fetchEconomy();
+        HashMap<String, String> neBusiness = nes.fetchBusiness();
+        HashMap<String, String> neCountry = nes.fetchCountry();
 
 
-        Newscraper ns = new Newscraper();
-        ns.fetchBusiness();
+        neEconomy.entrySet().forEach(item->{
+
+        });
+
+
+        System.out.println(hash.generateHash(new java.util.Date().toString()));
+
+
+
+
     }
 }

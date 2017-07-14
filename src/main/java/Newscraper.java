@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class Newscraper {
 
     final String ECONOMY_ENDPOINT = "https://news.google.com/news/headlines/section/q/economy/economy?ned=in&hl=en-IN";
-    final String COUNTYR_ENDPOINT = "https://news.google.com/news/headlines/section/topic/NATION.en_in/India?ned=in&hl=en-IN";
+    final String COUNTRY_ENDPOINT = "https://news.google.com/news/headlines/section/topic/NATION.en_in/India?ned=in&hl=en-IN";
     final String BUSINESS_ENDPOINT = "https://news.google.com/news/headlines/section/topic/BUSINESS.en_in/Business?ned=in&hl=en-IN";
 
     final String CLASS_ID = "nuEeue hzdq5d ME7ew";
@@ -37,7 +37,7 @@ public class Newscraper {
     HashMap<String, String> fetchCountry(){
         HashMap<String,String> countryNews = new HashMap<String,String>();
         try{
-            doc = Jsoup.connect(COUNTYR_ENDPOINT).userAgent("Mozilla").data("name", "jsoup").get();
+            doc = Jsoup.connect(COUNTRY_ENDPOINT).userAgent("Mozilla").data("name", "jsoup").get();
             links = doc.getElementsByClass(CLASS_ID);
 
             links.forEach(item-> countryNews.put(item.text(),item.attr("href")));
